@@ -1,90 +1,62 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { products as allProducts } from '@/data/products';
 import { Image } from 'expo-image';
-import React from 'react';
-import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  image: any;
-  category: string;
-}
+import { useLocalSearchParams } from 'expo-router';
+import React, { useMemo } from 'react';
+import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 const numColumns = 2;
 const gap = 16;
 const itemWidth = (width - (gap * (numColumns + 1))) / numColumns;
 
-const products: Product[] = [
-  {
-    id: '1',
-    name: 'Premium Flower Bouquet',
-    price: 'Rp 250.000',
-    image: require('../../assets/images/buket bunga plastik/717e95ddf76b8651e2c4f4d94118b5aa.jpg'),
-    category: 'Bunga Plastik',
-  },
-  // Add more products...
-];
+const getCategoryTitle = (category: string): string => {
+  switch (category) {
+    case 'money': return 'Bouquet Uang';
+    case 'snack': return 'Bouquet Snack';
+    case 'fresh': return 'Bouquet Bunga Segar';
+    case 'artificial': return 'Bouquet Bunga Artificial';
+    case 'mini': return 'Bouquet Kado Mini';
+    case 'cosmetic': return 'Bouquet Kosmetik';
+    case 'graduation': return 'Bouquet Wisuda';
+    case 'hijab': return 'Bouquet Hijab';
+    default: return 'Produk';
+  }
+};
 
 export default function CategoryScreen() {
-  const renderProduct = ({ item }: { item: Product }) => (
-    <TouchableOpacity style={styles.productCard}>
-      <Image source={item.image} style={styles.productImage} contentFit="cover" />
-      <View style={styles.productInfo}>
-        <ThemedText style={styles.productName} numberOfLines={2}>
-          {item.name}
-        </ThemedText>
-        <ThemedText style={styles.productPrice}>{item.price}</ThemedText>
-        <View style={styles.ratingContainer}>
-          <ThemedText style={styles.rating}>⭐ 4.8</ThemedText>
-          <ThemedText style={styles.sales}>(120)</ThemedText>
-        </View>
-      </View>
-    </TouchableOpacity>
+  const { id } = useLocalSearchParams<{ id: string }>();
+  
+  const categoryProducts = useMemo(() => 
+    allProducts.filter(p => p.category === id),
+    [id]
   );
 
   return (
     <ThemedView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <ThemedText style={styles.backButtonText}>←</ThemedText>
-        </TouchableOpacity>
-        <ThemedText style={styles.headerTitle}>Buket Bunga</ThemedText>
-        <TouchableOpacity style={styles.filterButton}>
-          <ThemedText>Filter</ThemedText>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.filtersContainer}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <TouchableOpacity style={[styles.filterChip, styles.activeFilterChip]}>
-            <ThemedText style={styles.activeFilterText}>All</ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterChip}>
-            <ThemedText style={styles.filterText}>Newest</ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterChip}>
-            <ThemedText style={styles.filterText}>Popular</ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterChip}>
-            <ThemedText style={styles.filterText}>Price: Low to High</ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterChip}>
-            <ThemedText style={styles.filterText}>Price: High to Low</ThemedText>
-          </TouchableOpacity>
-        </ScrollView>
+        <ThemedText style={styles.headerTitle}>{getCategoryTitle(id)}</ThemedText>
+        <ThemedText style={styles.productCount}>{categoryProducts.length} products</ThemedText>
       </View>
 
       <FlatList
-        data={products}
-        renderItem={renderProduct}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        contentContainerStyle={styles.productGrid}
-        showsVerticalScrollIndicator={false}
+        data={categoryProducts}
+        numColumns={numColumns}
+        contentContainerStyle={styles.grid}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={[styles.productCard, { width: itemWidth }]}>
+            <Image source={item.image} style={styles.productImage} />
+            <View style={styles.productInfo}>
+              <ThemedText style={styles.productName}>{item.name}</ThemedText>
+              <ThemedText style={styles.productPrice}>
+                Rp {item.price.toLocaleString()}
+              </ThemedText>
+            </View>
+          </TouchableOpacity>
+        )}
       />
     </ThemedView>
   );
@@ -95,66 +67,39 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
   },
-  backButton: {
-    padding: 8,
-  },
-  backButtonText: {
-    fontSize: 24,
-  },
   headerTitle: {
-    flex: 1,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
-  filterButton: {
-    padding: 8,
-  },
-  filtersContainer: {
-    padding: 16,
-  },
-  filterChip: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
-    marginRight: 8,
-  },
-  activeFilterChip: {
-    backgroundColor: Colors.light.tint,
-  },
-  filterText: {
+  productCount: {
+    fontSize: 14,
     color: '#666',
+    marginTop: 4,
   },
-  activeFilterText: {
-    color: '#fff',
-  },
-  productGrid: {
+  grid: {
     padding: gap,
   },
   productCard: {
-    width: itemWidth,
     backgroundColor: '#fff',
     borderRadius: 8,
-    marginBottom: gap,
-    marginRight: gap,
+    margin: gap / 2,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 3,
+    overflow: 'hidden',
   },
   productImage: {
     width: '100%',
-    height: itemWidth,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    aspectRatio: 1,
   },
   productInfo: {
     padding: 12,
@@ -162,24 +107,11 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 14,
     marginBottom: 4,
-    height: 40,
+    fontWeight: '500',
   },
   productPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: Colors.light.tint,
-    marginBottom: 4,
-  },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  rating: {
-    fontSize: 12,
-    marginRight: 4,
-  },
-  sales: {
-    fontSize: 12,
-    color: '#666',
+    fontWeight: 'bold',
   },
 });

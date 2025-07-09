@@ -1,3 +1,17 @@
+// Product Categories
+export type BouquetCategory = 
+  | 'money'      // Bouquet Uang
+  | 'snack'      // Bouquet Snack
+  | 'fresh'      // Bouquet Bunga Segar
+  | 'artificial' // Bouquet Bunga Artificial
+  | 'mini'       // Bouquet Kado Mini
+  | 'cosmetic'   // Bouquet Kosmetik
+  | 'graduation' // Bouquet Wisuda
+  | 'hijab';     // Bouquet Hijab
+
+// Order Status
+export type OrderStatus = 'Delivered' | 'Shipping' | 'Processing' | 'Cancelled';
+
 // Product Types
 export interface Product {
   id: number;
@@ -5,7 +19,7 @@ export interface Product {
   price: number;
   description: string;
   image: any; // For require() image source
-  category: string;
+  category: BouquetCategory;
 }
 
 // Cart Types
@@ -15,14 +29,12 @@ export interface CartItem extends Product {
 
 // Order Types
 export interface Order {
-  id: number;
+  id: string;
+  date: string;
+  status: OrderStatus;
   items: CartItem[];
-  status: 'pending' | 'processing' | 'shipped' | 'delivered';
-  totalPrice: number;
-  shippingAddress: Address;
-  shippingMethod: ShippingMethod;
-  paymentMethod: PaymentMethod;
-  createdAt: string;
+  totalAmount: number;
+  trackingNumber: string;
 }
 
 // Address Types
@@ -38,10 +50,11 @@ export interface Address {
 
 // Shipping Types
 export interface ShippingMethod {
-  id: number;
+  id: string;
   name: string;
   price: number;
-  estimatedDays: string;
+  duration: string;
+  provider: string;
 }
 
 // Payment Types
@@ -49,4 +62,13 @@ export interface PaymentMethod {
   id: number;
   name: string;
   type: 'bank_transfer' | 'e_wallet' | 'credit_card';
+  icon: string;
+}
+
+// Category Types
+export interface Category {
+  id: string;
+  name: string;
+  image: any;
+  description?: string;
 }

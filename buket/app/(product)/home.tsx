@@ -1,15 +1,35 @@
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ThemedText } from '../../components/ThemedText';
-import { ThemedView } from '../../components/ThemedView';
 
 const categories = [
-  { id: 1, name: 'Buket Bunga', image: require('../../assets/images/buket bunga plastik/5ce2f301eddc6162ae6b3e6119c51b5c-removebg-preview.png') },
-  { id: 2, name: 'Buket Hijab', image: require('../../assets/images/buket hijab/8c06ccf6512d633813849201987e05fb-removebg-preview.png') },
-  { id: 3, name: 'Buket Kosmetik', image: require('../../assets/images/buket kosmetik - skincare/6b17240d3e7d2c3aef695f2677c304fa-removebg-preview.png') },
-  { id: 4, name: 'Buket Mini', image: require('../../assets/images/buket mini/fc46852efcab79ac5af7eed359f81df4-removebg-preview.png') },
-  { id: 5, name: 'Buket Snack', image: require('../../assets/images/buket snack/6aa4e37ce964cf12a075ed8606645404-removebg-preview.png') },
+  { 
+    id: 1, 
+    name: 'Buket Bunga', 
+    image: require('@/assets/images/categories/artificial/artificial-1.jpg')
+  },
+  { 
+    id: 2, 
+    name: 'Buket Hijab', 
+    image: require('@/assets/images/categories/hijab/hijab-1.jpg')
+  },
+  { 
+    id: 3, 
+    name: 'Buket Kosmetik', 
+    image: require('@/assets/images/categories/cosmetic/cosmetic-1.jpg')
+  },
+  { 
+    id: 4, 
+    name: 'Buket Mini', 
+    image: require('@/assets/images/categories/mini/mini-1.jpg')
+  },
+  { 
+    id: 5, 
+    name: 'Buket Snack', 
+    image: require('@/assets/images/categories/snack/snack-1.jpg')
+  },
 ];
 
 const featuredProducts = [
@@ -17,7 +37,7 @@ const featuredProducts = [
     id: 1,
     name: 'Premium Flower Bouquet',
     price: 'Rp 250.000',
-    image: require('../../assets/images/buket bunga plastik/717e95ddf76b8651e2c4f4d94118b5aa.jpg'),
+    image: require('@/assets/images/categories/artificial/artificial-2.jpg'),
   },
   // Add more featured products...
 ];
@@ -31,7 +51,7 @@ export default function HomeScreen() {
           <ThemedText style={styles.headerTitle}>Buket Store</ThemedText>
           <TouchableOpacity>
             <Image
-              source={require('../../assets/images/icon.png')}
+              source={require('@/assets/images/icon.png')}
               style={styles.cartIcon}
             />
           </TouchableOpacity>
@@ -40,7 +60,7 @@ export default function HomeScreen() {
         {/* Search Bar */}
         <View style={styles.searchBar}>
           <Image
-            source={require('../../assets/images/icon.png')}
+            source={require('@/assets/images/icon.png')}
             style={styles.searchIcon}
           />
           <ThemedText style={styles.searchText}>Search products...</ThemedText>

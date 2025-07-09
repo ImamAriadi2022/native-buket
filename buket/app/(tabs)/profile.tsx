@@ -1,8 +1,8 @@
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ThemedText } from '../../components/ThemedText';
-import { ThemedView } from '../../components/ThemedView';
 
 export default function ProfileScreen() {
   return (
@@ -11,7 +11,7 @@ export default function ProfileScreen() {
         {/* Profile Header */}
         <View style={styles.header}>
           <Image
-            source={require('../../assets/images/icon.png')}
+            source={require('@/assets/images/icon.png')}
             style={styles.profileImage}
           />
           <ThemedText style={styles.userName}>John Doe</ThemedText>

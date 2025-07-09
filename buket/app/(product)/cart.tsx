@@ -1,82 +1,158 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { products } from '@/data/products';
+import { CartItem } from '@/types';
 import { Image } from 'expo-image';
-import React from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { router } from 'expo-router';
+import React, { useState } from 'react';
+import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const cartItems = [
-  {
-    id: 1,
-    name: 'Premium Flower Bouquet',
-    price: 250000,
-    quantity: 1,
-    image: require('../../assets/images/buket bunga plastik/717e95ddf76b8651e2c4f4d94118b5aa.jpg'),
-  },
-  // Add more items...
+// Initial cart items with properly aliased image paths
+const initialCartItems: CartItem[] = [
+  { ...products[0], quantity: 1 },  // Money bouquet
+  { ...products[2], quantity: 2 },  // Snack bouquet
+  { ...products[4], quantity: 1 },  // Fresh flowers
+  { ...products[12], quantity: 1 }, // Graduation bouquet
 ];
 
+const getCategoryLabel = (category: string): string => {
+  switch (category) {
+    case 'money': return 'Bouquet Uang';
+    case 'snack': return 'Bouquet Snack';
+    case 'fresh': return 'Bouquet Bunga Segar';
+    case 'artificial': return 'Bouquet Bunga Artificial';
+    case 'mini': return 'Bouquet Kado Mini';
+    case 'cosmetic': return 'Bouquet Kosmetik';
+    case 'graduation': return 'Bouquet Wisuda';
+    case 'hijab': return 'Bouquet Hijab';
+    default: return 'Other';
+  }
+};
+
 export default function CartScreen() {
+  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+
+  const updateQuantity = (id: number, increment: boolean) => {
+    setCartItems(items =>
+      items.map(item =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + (increment ? 1 : -1)) }
+          : item
+      )
+    );
+  };
+
+  const removeItem = (id: number) => {
+    Alert.alert(
+      "Remove Item",
+      "Are you sure you want to remove this item?",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Remove",
+          style: "destructive",
+          onPress: () => setCartItems(items => items.filter(item => item.id !== id))
+        }
+      ]
+    );
+  };
+
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const shippingCost = 20000;
+  const grandTotal = totalPrice + shippingCost;
+
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      Alert.alert("Empty Cart", "Please add items to your cart before checking out");
+      return;
+    }
+    router.push("/checkout");
+  };
 
   return (
     <ThemedView style={styles.container}>
       <View style={styles.header}>
         <ThemedText style={styles.headerTitle}>Shopping Cart</ThemedText>
+        <ThemedText style={styles.itemCount}>{cartItems.length} items</ThemedText>
       </View>
 
       <ScrollView style={styles.cartList}>
-        {cartItems.map((item) => (
-          <View key={item.id} style={styles.cartItem}>
-            <Image source={item.image} style={styles.itemImage} />
-            
-            <View style={styles.itemInfo}>
-              <ThemedText style={styles.itemName}>{item.name}</ThemedText>
-              <ThemedText style={styles.itemPrice}>
-                Rp {item.price.toLocaleString()}
-              </ThemedText>
-              
-              <View style={styles.quantityContainer}>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <ThemedText style={styles.quantityButtonText}>-</ThemedText>
-                </TouchableOpacity>
-                <ThemedText style={styles.quantity}>{item.quantity}</ThemedText>
-                <TouchableOpacity style={styles.quantityButton}>
-                  <ThemedText style={styles.quantityButtonText}>+</ThemedText>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <TouchableOpacity style={styles.deleteButton}>
-              <ThemedText style={styles.deleteButtonText}>×</ThemedText>
+        {cartItems.length === 0 ? (
+          <View style={styles.emptyCart}>
+            <ThemedText style={styles.emptyCartText}>Your cart is empty</ThemedText>
+            <TouchableOpacity 
+              style={styles.continueShopping}
+              onPress={() => router.back()}>
+              <ThemedText style={styles.continueShoppingText}>Continue Shopping</ThemedText>
             </TouchableOpacity>
           </View>
-        ))}
+        ) : (
+          cartItems.map((item) => (
+            <View key={item.id} style={styles.cartItem}>
+              <Image source={item.image} style={styles.itemImage} />
+              
+              <View style={styles.itemInfo}>
+                <ThemedText style={styles.categoryLabel}>
+                  {getCategoryLabel(item.category)}
+                </ThemedText>
+                <ThemedText style={styles.itemName}>{item.name}</ThemedText>
+                <ThemedText style={styles.itemPrice}>
+                  Rp {item.price.toLocaleString()}
+                </ThemedText>
+                
+                <View style={styles.quantityContainer}>
+                  <TouchableOpacity 
+                    style={styles.quantityButton}
+                    onPress={() => updateQuantity(item.id, false)}>
+                    <ThemedText style={styles.quantityButtonText}>-</ThemedText>
+                  </TouchableOpacity>
+                  <ThemedText style={styles.quantity}>{item.quantity}</ThemedText>
+                  <TouchableOpacity 
+                    style={styles.quantityButton}
+                    onPress={() => updateQuantity(item.id, true)}>
+                    <ThemedText style={styles.quantityButtonText}>+</ThemedText>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <TouchableOpacity 
+                style={styles.deleteButton}
+                onPress={() => removeItem(item.id)}>
+                <ThemedText style={styles.deleteButtonText}>×</ThemedText>
+              </TouchableOpacity>
+            </View>
+          ))
+        )}
       </ScrollView>
 
-      <View style={styles.summary}>
-        <View style={styles.summaryRow}>
-          <ThemedText style={styles.summaryLabel}>Subtotal</ThemedText>
-          <ThemedText style={styles.summaryValue}>
-            Rp {totalPrice.toLocaleString()}
-          </ThemedText>
-        </View>
-        <View style={styles.summaryRow}>
-          <ThemedText style={styles.summaryLabel}>Shipping</ThemedText>
-          <ThemedText style={styles.summaryValue}>Rp 20.000</ThemedText>
-        </View>
-        <View style={styles.separator} />
-        <View style={styles.summaryRow}>
-          <ThemedText style={styles.totalLabel}>Total</ThemedText>
-          <ThemedText style={styles.totalValue}>
-            Rp {(totalPrice + 20000).toLocaleString()}
-          </ThemedText>
-        </View>
+      {cartItems.length > 0 && (
+        <View style={styles.summary}>
+          <View style={styles.summaryRow}>
+            <ThemedText style={styles.summaryLabel}>Subtotal</ThemedText>
+            <ThemedText style={styles.summaryValue}>
+              Rp {totalPrice.toLocaleString()}
+            </ThemedText>
+          </View>
+          <View style={styles.summaryRow}>
+            <ThemedText style={styles.summaryLabel}>Shipping</ThemedText>
+            <ThemedText style={styles.summaryValue}>Rp {shippingCost.toLocaleString()}</ThemedText>
+          </View>
+          <View style={styles.separator} />
+          <View style={styles.summaryRow}>
+            <ThemedText style={styles.totalLabel}>Total</ThemedText>
+            <ThemedText style={styles.totalValue}>
+              Rp {grandTotal.toLocaleString()}
+            </ThemedText>
+          </View>
 
-        <TouchableOpacity style={styles.checkoutButton}>
-          <ThemedText style={styles.checkoutButtonText}>Proceed to Checkout</ThemedText>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity 
+            style={styles.checkoutButton}
+            onPress={handleCheckout}>
+            <ThemedText style={styles.checkoutButtonText}>Proceed to Checkout</ThemedText>
+          </TouchableOpacity>
+        </View>
+      )}
     </ThemedView>
   );
 }
@@ -93,6 +169,11 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  itemCount: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
   },
   cartList: {
     flex: 1,
@@ -112,9 +193,15 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 16,
   },
+  categoryLabel: {
+    fontSize: 12,
+    color: Colors.light.tint,
+    marginBottom: 4,
+  },
   itemName: {
     fontSize: 16,
     marginBottom: 4,
+    fontWeight: '500',
   },
   itemPrice: {
     fontSize: 16,
@@ -192,5 +279,26 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  emptyCart: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 32,
+  },
+  emptyCartText: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 16,
+  },
+  continueShopping: {
+    padding: 12,
+    borderRadius: 8,
+    backgroundColor: Colors.light.tint,
+  },
+  continueShoppingText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '500',
   },
 });
