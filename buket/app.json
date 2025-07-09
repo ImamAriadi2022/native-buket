@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "buket",
-    "slug": "buket",
+    "name": "Florist Saa'",
+    "slug": "florist-saa",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "buket",
+    "scheme": "florist-saa",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
