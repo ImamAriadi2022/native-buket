@@ -1,3 +1,4 @@
+import { productImages } from '@/assets/images';
 import { Product } from '@/types';
 
 export const products: Product[] = [
@@ -8,7 +9,7 @@ export const products: Product[] = [
     name: 'Bouquet Uang 100K',
     price: 500000,
     description: 'Bouquet dari uang asli pecahan Rp 10.000, total Rp 100.000',
-    image: require('@/assets/images/categories/money/money-1.jpg'),
+    image: productImages.money.money1,
   },
   {
     id: 2,
@@ -16,7 +17,7 @@ export const products: Product[] = [
     name: 'Bouquet Uang 200K',
     price: 750000,
     description: 'Bouquet dari uang asli pecahan Rp 20.000, total Rp 200.000',
-    image: require('@/assets/images/categories/money/money-2.jpg'),
+    image: productImages.money.money2,
   },
 
   // Bouquet Snack
@@ -26,7 +27,7 @@ export const products: Product[] = [
     name: 'Sweet Treats Bouquet',
     price: 150000,
     description: 'Berisi cokelat, permen, dan snack manis pilihan',
-    image: require('@/assets/images/categories/snack/snack-1.jpg'),
+    image: productImages.snack.snack1,
   },
   {
     id: 4,
@@ -34,114 +35,96 @@ export const products: Product[] = [
     name: 'Premium Snack Bouquet',
     price: 250000,
     description: 'Kombinasi snack premium dan cokelat impor',
-    image: require('@/assets/images/categories/snack/snack-2.jpg'),
+    image: productImages.snack.snack2,
   },
 
-  // Bouquet Bunga Segar
+  // Bouquet Bunga Plastik
   {
     id: 5,
-    category: 'fresh',
-    name: 'Wedding Rose Bouquet',
-    price: 750000,
-    description: 'Bunga mawar segar untuk pernikahan',
-    image: require('@/assets/images/categories/fresh/fresh-1.jpg'),
+    category: 'artificial',
+    name: 'Artificial Rose Bouquet',
+    price: 350000,
+    description: 'Buket bunga mawar artifisial premium',
+    image: productImages.artificial.artificial1,
   },
   {
     id: 6,
-    category: 'fresh',
-    name: 'Mixed Fresh Flowers',
-    price: 500000,
-    description: 'Rangkaian bunga segar campuran',
-    image: require('@/assets/images/categories/fresh/fresh-2.jpg'),
+    category: 'artificial',
+    name: 'Mixed Artificial Bouquet',
+    price: 400000,
+    description: 'Kombinasi berbagai bunga artifisial premium',
+    image: productImages.artificial.artificial2,
   },
 
-  // Bouquet Bunga Artificial
+  // Bouquet Mini
   {
     id: 7,
-    category: 'artificial',
-    name: 'Eternal Rose Bouquet',
-    price: 300000,
-    description: 'Bunga mawar artificial yang tahan lama',
-    image: require('@/assets/images/categories/artificial/artificial-1.jpg'),
+    category: 'mini',
+    name: 'Mini Gift Bouquet',
+    price: 150000,
+    description: 'Buket kado mini yang lucu dan menggemaskan',
+    image: productImages.mini.mini1,
   },
   {
     id: 8,
-    category: 'artificial',
-    name: 'Premium Artificial Mix',
-    price: 400000,
-    description: 'Rangkaian bunga artificial premium',
-    image: require('@/assets/images/categories/artificial/artificial-2.jpg'),
-  },
-
-  // Bouquet Kado Mini
-  {
-    id: 9,
     category: 'mini',
-    name: 'Mini Love Package',
+    name: 'Mini Surprise Bouquet',
     price: 200000,
-    description: 'Bouquet mini dengan boneka kecil dan surat cinta',
-    image: require('@/assets/images/categories/mini/mini-1.jpg'),
-  },
-  {
-    id: 10,
-    category: 'mini',
-    name: 'Mini Surprise Box',
-    price: 250000,
-    description: 'Bouquet mini dengan parfum dan aksesoris',
-    image: require('@/assets/images/categories/mini/mini-2.jpg'),
+    description: 'Buket kado mini dengan kejutan di dalamnya',
+    image: productImages.mini.mini2,
   },
 
   // Bouquet Kosmetik
   {
-    id: 11,
+    id: 9,
     category: 'cosmetic',
-    name: 'Skincare Package',
+    name: 'Skincare Bouquet',
     price: 450000,
-    description: 'Bouquet berisi produk skincare premium',
-    image: require('@/assets/images/categories/cosmetic/cosmetic-1.jpg'),
+    description: 'Buket berisi produk skincare premium',
+    image: productImages.cosmetic.cosmetic1,
   },
   {
-    id: 12,
+    id: 10,
     category: 'cosmetic',
-    name: 'Beauty Essential Box',
-    price: 350000,
-    description: 'Bouquet berisi lipstik dan makeup essentials',
-    image: require('@/assets/images/categories/cosmetic/cosmetic-2.jpg'),
+    name: 'Makeup Bouquet',
+    price: 500000,
+    description: 'Buket berisi produk makeup branded',
+    image: productImages.cosmetic.cosmetic2,
   },
 
   // Bouquet Wisuda
   {
-    id: 13,
+    id: 11,
     category: 'graduation',
-    name: 'Graduation Special',
-    price: 350000,
-    description: 'Bouquet wisuda dengan boneka toga dan ucapan',
-    image: require('@/assets/images/categories/graduation/graduation-1.jpg'),
+    name: 'Graduation Bouquet',
+    price: 300000,
+    description: 'Buket spesial untuk wisuda',
+    image: productImages.graduation.graduation1,
   },
   {
-    id: 14,
+    id: 12,
     category: 'graduation',
-    name: 'Graduation Deluxe',
-    price: 500000,
-    description: 'Bouquet wisuda premium dengan bunga dan boneka besar',
-    image: require('@/assets/images/categories/graduation/graduation-2.jpg'),
+    name: 'Premium Graduation Bouquet',
+    price: 450000,
+    description: 'Buket wisuda premium dengan boneka wisuda',
+    image: productImages.graduation.graduation2,
   },
 
   // Bouquet Hijab
   {
-    id: 15,
+    id: 13,
     category: 'hijab',
-    name: 'Hijab Rose Bouquet',
-    price: 300000,
-    description: 'Bouquet dari hijab premium dilipat seperti mawar',
-    image: require('@/assets/images/categories/hijab/hijab-1.jpg'),
+    name: 'Basic Hijab Bouquet',
+    price: 250000,
+    description: 'Buket berisi hijab pilihan',
+    image: productImages.hijab.hijab1,
   },
   {
-    id: 16,
+    id: 14,
     category: 'hijab',
-    name: 'Premium Hijab Collection',
-    price: 450000,
-    description: 'Koleksi hijab premium dalam bentuk bouquet',
-    image: require('@/assets/images/categories/hijab/hijab-2.jpg'),
+    name: 'Premium Hijab Bouquet',
+    price: 350000,
+    description: 'Buket berisi hijab premium',
+    image: productImages.hijab.hijab2,
   },
 ];

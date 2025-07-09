@@ -1,45 +1,18 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { products } from '@/data/products';
+import { categories } from '@/utils/categories';
+import { router } from 'expo-router';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const categories = [
-  { 
-    id: 1, 
-    name: 'Buket Bunga', 
-    image: require('@/assets/images/categories/artificial/artificial-1.jpg')
-  },
-  { 
-    id: 2, 
-    name: 'Buket Hijab', 
-    image: require('@/assets/images/categories/hijab/hijab-1.jpg')
-  },
-  { 
-    id: 3, 
-    name: 'Buket Kosmetik', 
-    image: require('@/assets/images/categories/cosmetic/cosmetic-1.jpg')
-  },
-  { 
-    id: 4, 
-    name: 'Buket Mini', 
-    image: require('@/assets/images/categories/mini/mini-1.jpg')
-  },
-  { 
-    id: 5, 
-    name: 'Buket Snack', 
-    image: require('@/assets/images/categories/snack/snack-1.jpg')
-  },
-];
-
+// Featured products for homepage
 const featuredProducts = [
-  {
-    id: 1,
-    name: 'Premium Flower Bouquet',
-    price: 'Rp 250.000',
-    image: require('@/assets/images/categories/artificial/artificial-2.jpg'),
-  },
-  // Add more featured products...
+  products[5],  // Artificial bouquet
+  products[13], // Premium Hijab bouquet
+  products[9],  // Makeup bouquet
+  products[7],  // Mini gift bouquet
 ];
 
 export default function HomeScreen() {
@@ -48,30 +21,22 @@ export default function HomeScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <ThemedText style={styles.headerTitle}>Buket Store</ThemedText>
-          <TouchableOpacity>
-            <Image
-              source={require('@/assets/images/icon.png')}
-              style={styles.cartIcon}
-            />
-          </TouchableOpacity>
-        </View>
-
-        {/* Search Bar */}
-        <View style={styles.searchBar}>
-          <Image
-            source={require('@/assets/images/icon.png')}
-            style={styles.searchIcon}
-          />
-          <ThemedText style={styles.searchText}>Search products...</ThemedText>
+          <ThemedText style={styles.headerTitle}>Florist Saa'</ThemedText>
+          <ThemedText style={styles.headerSubtitle}>Your Thoughtful Gift Partner</ThemedText>
         </View>
 
         {/* Categories */}
-        <View style={styles.categoriesContainer}>
-          <ThemedText style={styles.sectionTitle}>Categories</ThemedText>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>Shop by Category</ThemedText>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.categoriesContainer}>
             {categories.map((category) => (
-              <TouchableOpacity key={category.id} style={styles.categoryCard}>
+              <TouchableOpacity
+                key={category.id}
+                style={styles.categoryCard}
+                onPress={() => router.push(`/category/${category.id}`)}>
                 <Image source={category.image} style={styles.categoryImage} />
                 <ThemedText style={styles.categoryName}>{category.name}</ThemedText>
               </TouchableOpacity>
@@ -80,16 +45,53 @@ export default function HomeScreen() {
         </View>
 
         {/* Featured Products */}
-        <View style={styles.featuredContainer}>
+        <View style={styles.section}>
           <ThemedText style={styles.sectionTitle}>Featured Products</ThemedText>
-          <View style={styles.productsGrid}>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.productsContainer}>
             {featuredProducts.map((product) => (
-              <TouchableOpacity key={product.id} style={styles.productCard}>
+              <TouchableOpacity
+                key={product.id}
+                style={styles.productCard}
+                onPress={() => router.push(`/product/${product.id}`)}>
                 <Image source={product.image} style={styles.productImage} />
-                <ThemedText style={styles.productName}>{product.name}</ThemedText>
-                <ThemedText style={styles.productPrice}>{product.price}</ThemedText>
+                <View style={styles.productInfo}>
+                  <ThemedText style={styles.productName}>{product.name}</ThemedText>
+                  <ThemedText style={styles.productPrice}>
+                    Rp {product.price.toLocaleString()}
+                  </ThemedText>
+                </View>
               </TouchableOpacity>
             ))}
+          </ScrollView>
+        </View>
+
+        {/* Special Offers */}
+        <View style={[styles.section, styles.offersSection]}>
+          <ThemedText style={styles.sectionTitle}>Special Offers</ThemedText>
+          <View style={styles.offersGrid}>
+            <TouchableOpacity style={styles.offerCard}>
+              <Image
+                source={require('@/assets/images/products/graduation/graduation-1.jpg')}
+                style={styles.offerImage}
+              />
+              <View style={styles.offerOverlay}>
+                <ThemedText style={styles.offerTitle}>Graduation Special</ThemedText>
+                <ThemedText style={styles.offerSubtitle}>20% Off</ThemedText>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.offerCard}>
+              <Image
+                source={require('@/assets/images/products/cosmetic/cosmetic-1.jpg')}
+                style={styles.offerImage}
+              />
+              <View style={styles.offerOverlay}>
+                <ThemedText style={styles.offerTitle}>Beauty Sets</ThemedText>
+                <ThemedText style={styles.offerSubtitle}>Free Shipping</ThemedText>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -102,47 +104,35 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
+    padding: 20,
+    paddingTop: 40,
+    backgroundColor: Colors.light.tint,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 8,
   },
-  cartIcon: {
-    width: 24,
-    height: 24,
+  headerSubtitle: {
+    fontSize: 16,
+    color: '#fff',
+    opacity: 0.8,
   },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    margin: 16,
-    padding: 12,
-    borderRadius: 8,
-  },
-  searchIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
-  },
-  searchText: {
-    color: '#666',
-  },
-  categoriesContainer: {
-    marginVertical: 16,
+  section: {
+    padding: 20,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 16,
-    marginBottom: 12,
+    marginBottom: 16,
+  },
+  categoriesContainer: {
+    paddingHorizontal: 10,
   },
   categoryCard: {
     alignItems: 'center',
-    marginHorizontal: 8,
+    marginHorizontal: 10,
     width: 100,
   },
   categoryImage: {
@@ -152,42 +142,85 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   categoryName: {
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
   },
-  featuredContainer: {
-    marginVertical: 16,
-  },
-  productsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 8,
+  productsContainer: {
+    paddingHorizontal: 10,
   },
   productCard: {
-    width: '45%',
+    width: 160,
+    marginHorizontal: 10,
     backgroundColor: '#fff',
-    margin: 8,
-    borderRadius: 8,
-    padding: 8,
+    borderRadius: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 3,
   },
   productImage: {
     width: '100%',
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 8,
+    height: 160,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+  productInfo: {
+    padding: 12,
   },
   productName: {
     fontSize: 14,
     marginBottom: 4,
   },
   productPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
     color: Colors.light.tint,
+    fontWeight: 'bold',
+  },
+  offersSection: {
+    paddingBottom: 30,
+  },
+  offersGrid: {
+    flexDirection: 'column',
+    gap: 16,
+  },
+  offerCard: {
+    height: 160,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  offerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  offerOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  offerTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  offerSubtitle: {
+    color: '#fff',
+    fontSize: 14,
   },
 });

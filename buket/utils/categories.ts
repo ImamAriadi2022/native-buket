@@ -1,7 +1,8 @@
+import { categoryImages } from '@/assets/images';
+
 export type CategoryType = 
   | 'money'
   | 'snack'
-  | 'fresh'
   | 'artificial'
   | 'mini'
   | 'cosmetic'
@@ -12,7 +13,6 @@ export const getCategoryLabel = (category: string): string => {
   switch (category) {
     case 'money': return 'Bouquet Uang';
     case 'snack': return 'Bouquet Snack';
-    case 'fresh': return 'Bouquet Bunga Segar';
     case 'artificial': return 'Bouquet Bunga Artificial';
     case 'mini': return 'Bouquet Kado Mini';
     case 'cosmetic': return 'Bouquet Kosmetik';
@@ -34,50 +34,50 @@ export const categories: Category[] = [
   {
     id: 'artificial',
     name: 'Buket Bunga',
-    description: 'Beautiful artificial flower arrangements',
-    image: require('@/assets/images/categories/artificial/artificial-1.jpg'),
+    description: 'Buket bunga artifisial premium',
+    image: categoryImages.artificial,
     itemCount: 8,
   },
   {
     id: 'hijab',
     name: 'Buket Hijab',
-    description: 'Elegant hijab gift bouquets',
-    image: require('@/assets/images/categories/hijab/hijab-1.jpg'),
+    description: 'Buket berisi hijab pilihan',
+    image: categoryImages.hijab,
     itemCount: 5,
   },
   {
     id: 'cosmetic',
     name: 'Buket Kosmetik',
-    description: 'Beauty and skincare gift bouquets',
-    image: require('@/assets/images/categories/cosmetic/cosmetic-1.jpg'),
+    description: 'Buket berisi produk skincare dan makeup',
+    image: categoryImages.cosmetic,
     itemCount: 6,
   },
   {
     id: 'mini',
     name: 'Buket Mini',
-    description: 'Cute mini gift bouquets',
-    image: require('@/assets/images/categories/mini/mini-1.jpg'),
+    description: 'Buket kado mini yang lucu',
+    image: categoryImages.mini,
     itemCount: 4,
   },
   {
     id: 'snack',
     name: 'Buket Snack',
-    description: 'Delicious snack arrangements',
-    image: require('@/assets/images/categories/snack/snack-1.jpg'),
+    description: 'Buket berisi snack pilihan',
+    image: categoryImages.snack,
     itemCount: 7,
   },
   {
     id: 'graduation',
     name: 'Buket Wisuda',
-    description: 'Special graduation bouquets',
-    image: require('@/assets/images/categories/graduation/graduation-1.jpg'),
+    description: 'Buket spesial untuk wisuda',
+    image: categoryImages.graduation,
     itemCount: 5,
   },
   {
     id: 'money',
     name: 'Buket Uang',
-    description: 'Creative money gift bouquets',
-    image: require('@/assets/images/categories/money/money-1.jpg'),
+    description: 'Buket dari uang asli',
+    image: categoryImages.money,
     itemCount: 3,
   }
 ];

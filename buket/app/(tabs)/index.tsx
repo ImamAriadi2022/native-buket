@@ -69,7 +69,7 @@ export default function HomeScreen() {
 					<View style={styles.offersContainer}>
 						<TouchableOpacity style={styles.offerCard}>
 							<Image
-								source={require('@/assets/images/categories/fresh/fresh-1.jpg')}
+								source={require('@/assets/images/products/wedding/wedding-1.jpg')}
 								style={styles.offerImage}
 							/>
 							<View style={styles.offerOverlay}>
@@ -80,7 +80,7 @@ export default function HomeScreen() {
 
 						<TouchableOpacity style={styles.offerCard}>
 							<Image
-								source={require('@/assets/images/categories/graduation/graduation-1.jpg')}
+								source={require('@/assets/images/products/graduation/graduation-1.jpg')}
 								style={styles.offerImage}
 							/>
 							<View style={styles.offerOverlay}>

@@ -13,7 +13,7 @@ export default function ProductDetailScreen() {
         {/* Product Images Carousel */}
         <View style={styles.imageContainer}>
           <Image
-            source={require('../../assets/images/buket bunga plastik/717e95ddf76b8651e2c4f4d94118b5aa.jpg')}
+            source={require('@/assets/images/products/artificial/artificial-1.jpg')}
             style={styles.productImage}
             resizeMode="cover"
           />
