@@ -52,7 +52,7 @@ const CheckoutScreen = ({ route, navigation }: any) => {
           onPress: () => {
             Alert.alert(
               'Pembayaran Berhasil!',
-              'Terima kasih! Pesanan Anda sedang diproses.',
+              'Terima kasih! Pesanan buket Anda sedang diproses.',
               [{ text: 'OK', onPress: () => navigation.navigate('MainTabs') }]
             );
           }
@@ -67,7 +67,7 @@ const CheckoutScreen = ({ route, navigation }: any) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backButton}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Checkout</Text>
+        <Text style={styles.headerTitle}>Checkout Buket</Text>
         <View style={styles.placeholder} />
       </View>
 
@@ -197,7 +197,7 @@ const CheckoutScreen = ({ route, navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#F1F8E9',
   },
   header: {
     flexDirection: 'row',
@@ -206,18 +206,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 50,
     paddingBottom: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#2E7D32',
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: '#4CAF50',
   },
   backButton: {
     fontSize: 24,
-    color: '#333',
+    color: '#fff',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
   },
   placeholder: {
     width: 24,
@@ -235,11 +235,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderTopWidth: 3,
+    borderTopColor: '#66BB6A',
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 15,
   },
   orderItem: {
@@ -258,26 +260,26 @@ const styles = StyleSheet.create({
   },
   orderItemName: {
     fontSize: 14,
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 2,
   },
   orderItemPrice: {
     fontSize: 12,
-    color: '#666',
+    color: '#2E7D32',
   },
   orderItemTotal: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: '#388E3C',
   },
   textInput: {
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#66BB6A',
     borderRadius: 8,
     padding: 12,
     marginBottom: 10,
     fontSize: 14,
-    color: '#333',
+    color: '#1B5E20',
   },
   methodOption: {
     flexDirection: 'row',
@@ -286,36 +288,36 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#66BB6A',
     borderRadius: 8,
     marginBottom: 8,
   },
   selectedMethod: {
-    borderColor: '#FF6B6B',
-    backgroundColor: '#fff5f5',
+    borderColor: '#4CAF50',
+    backgroundColor: '#E8F5E8',
   },
   methodInfo: {
     flex: 1,
   },
   methodName: {
     fontSize: 14,
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 2,
   },
   methodFee: {
     fontSize: 12,
-    color: '#666',
+    color: '#2E7D32',
   },
   radio: {
     width: 20,
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#e0e0e0',
+    borderColor: '#66BB6A',
   },
   radioSelected: {
-    borderColor: '#FF6B6B',
-    backgroundColor: '#FF6B6B',
+    borderColor: '#4CAF50',
+    backgroundColor: '#4CAF50',
   },
   priceRow: {
     flexDirection: 'row',
@@ -325,36 +327,36 @@ const styles = StyleSheet.create({
   },
   priceLabel: {
     fontSize: 14,
-    color: '#666',
+    color: '#2E7D32',
   },
   priceValue: {
     fontSize: 14,
-    color: '#333',
+    color: '#1B5E20',
   },
   totalRow: {
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: '#66BB6A',
     paddingTop: 8,
     marginTop: 8,
   },
   totalLabel: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
   },
   totalValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: '#2E7D32',
   },
   footer: {
     backgroundColor: '#fff',
     padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopWidth: 3,
+    borderTopColor: '#4CAF50',
   },
   payButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#4CAF50',
     paddingVertical: 15,
     borderRadius: 25,
     alignItems: 'center',

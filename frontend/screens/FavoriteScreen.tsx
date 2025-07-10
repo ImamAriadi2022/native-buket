@@ -1,11 +1,12 @@
+import { Colors } from '@/constants/Colors';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const FavoriteScreen = ({ navigation }: any) => {
   const [favorites, setFavorites] = useState([
-    { id: 1, name: 'Hijab Segi Empat', screen: 'SegiEmpat', emoji: '🔸', description: 'Klasik dan fleksibel' },
-    { id: 2, name: 'Hijab Pashmina Voal', screen: 'PashminaVoal', emoji: '🌸', description: 'Ringan dan elegan' },
-    { id: 3, name: 'Hijab Syar\'i', screen: 'Syari', emoji: '🕌', description: 'Sesuai syariat Islam' },
+    { id: 1, name: 'Buket Wisuda', category: 'graduation', emoji: '🎓', description: 'Sempurna untuk hari kelulusan' },
+    { id: 2, name: 'Buket Pernikahan', category: 'wedding', emoji: '💒', description: 'Elegan untuk hari bahagia' },
+    { id: 3, name: 'Buket Uang', category: 'money', emoji: '�', description: 'Hadiah unik dan berkesan' },
   ]);
 
   const removeFavorite = (id: number) => {
@@ -16,7 +17,7 @@ const FavoriteScreen = ({ navigation }: any) => {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Favorit Saya</Text>
-        <Text style={styles.headerSubtitle}>Hijab yang Anda sukai</Text>
+        <Text style={styles.headerSubtitle}>Buket pilihan yang Anda sukai</Text>
       </View>
 
       {favorites.length > 0 ? (
@@ -25,7 +26,7 @@ const FavoriteScreen = ({ navigation }: any) => {
             <View key={item.id} style={styles.favoriteCard}>
               <TouchableOpacity
                 style={styles.favoriteContent}
-                onPress={() => navigation.navigate(item.screen)}
+                onPress={() => navigation.navigate('Catalog')}
               >
                 <Text style={styles.favoriteEmoji}>{item.emoji}</Text>
                 <View style={styles.favoriteInfo}>
@@ -44,10 +45,10 @@ const FavoriteScreen = ({ navigation }: any) => {
         </View>
       ) : (
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyEmoji}>💝</Text>
+          <Text style={styles.emptyEmoji}>�</Text>
           <Text style={styles.emptyTitle}>Belum Ada Favorit</Text>
           <Text style={styles.emptyText}>
-            Tambahkan hijab favorit Anda dari katalog untuk kemudahan akses
+            Tambahkan buket favorit Anda dari katalog untuk kemudahan akses
           </Text>
           <TouchableOpacity
             style={styles.browseCatalogButton}
@@ -63,13 +64,19 @@ const FavoriteScreen = ({ navigation }: any) => {
         <View style={styles.tipCard}>
           <Text style={styles.tipIcon}>💡</Text>
           <Text style={styles.tipText}>
-            Tambahkan hijab ke favorit untuk akses cepat dan mudah!
+            Tambahkan buket ke favorit untuk akses cepat dan mudah!
           </Text>
         </View>
         <View style={styles.tipCard}>
           <Text style={styles.tipIcon}>📱</Text>
           <Text style={styles.tipText}>
-            Gunakan fitur search untuk menemukan hijab yang Anda cari.
+            Gunakan fitur search untuk menemukan buket yang Anda cari.
+          </Text>
+        </View>
+        <View style={styles.tipCard}>
+          <Text style={styles.tipIcon}>🎁</Text>
+          <Text style={styles.tipText}>
+            Simpan buket untuk berbagai acara dan momen spesial.
           </Text>
         </View>
       </View>
@@ -80,23 +87,23 @@ const FavoriteScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: Colors.background,
   },
   header: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: Colors.primary,
     paddingTop: 60,
     paddingBottom: 20,
     paddingHorizontal: 20,
     alignItems: 'center',
   },
   headerTitle: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   headerSubtitle: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 14,
     opacity: 0.9,
   },
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   favoriteCard: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
     borderRadius: 12,
     marginBottom: 10,
     shadowColor: '#000',
@@ -114,6 +121,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     flexDirection: 'row',
     alignItems: 'center',
+    borderLeftWidth: 4,
+    borderLeftColor: Colors.accent,
   },
   favoriteContent: {
     flex: 1,
@@ -131,12 +140,12 @@ const styles = StyleSheet.create({
   favoriteName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.text,
     marginBottom: 4,
   },
   favoriteDescription: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.textSecondary,
   },
   removeButton: {
     padding: 15,
@@ -147,7 +156,7 @@ const styles = StyleSheet.create({
   emptyContainer: {
     alignItems: 'center',
     padding: 40,
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
     margin: 15,
     borderRadius: 12,
     shadowColor: '#000',
@@ -163,29 +172,29 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.text,
     marginBottom: 10,
   },
   emptyText: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.textSecondary,
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: 20,
   },
   browseCatalogButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: Colors.primary,
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
   },
   browseCatalogText: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 14,
     fontWeight: '600',
   },
   tipsSection: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
     margin: 15,
     padding: 20,
     borderRadius: 12,
@@ -198,16 +207,18 @@ const styles = StyleSheet.create({
   tipsTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.text,
     marginBottom: 15,
   },
   tipCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8F9FA',
+    backgroundColor: Colors.light,
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: Colors.secondary,
   },
   tipIcon: {
     fontSize: 16,
@@ -215,7 +226,7 @@ const styles = StyleSheet.create({
   },
   tipText: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.textSecondary,
     flex: 1,
   },
 });

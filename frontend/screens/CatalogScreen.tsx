@@ -1,18 +1,19 @@
+import { BouquetCategories } from '@/assets';
+import { Colors } from '@/constants/Colors';
 import React, { useState } from 'react';
 import { Alert, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { HijabCategories } from '../assets';
 
 const CatalogScreen = ({ navigation }: any) => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredData, setFilteredData] = useState(HijabCategories);
+  const [filteredData, setFilteredData] = useState(BouquetCategories);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     if (query.trim() === '') {
-      setFilteredData(HijabCategories);
+      setFilteredData(BouquetCategories);
     } else {
-      const filtered = HijabCategories.filter(item => 
+      const filtered = BouquetCategories.filter(item => 
         item.name.toLowerCase().includes(query.toLowerCase()) ||
         item.description.toLowerCase().includes(query.toLowerCase())
       );
@@ -31,7 +32,7 @@ const CatalogScreen = ({ navigation }: any) => {
     );
   };
 
-  const renderHijabItem = ({ item }: { item: any }) => (
+  const renderBouquetItem = ({ item }: { item: any }) => (
     <TouchableOpacity
       style={[styles.categoryCard, { backgroundColor: item.color }]}
       onPress={() => {
@@ -43,7 +44,7 @@ const CatalogScreen = ({ navigation }: any) => {
         <Image source={item.image} style={styles.categoryImage} />
         <TouchableOpacity 
           style={styles.addToCartButton}
-          onPress={() => navigation.navigate('Cart')}
+          onPress={() => handleAddToCart(item)}
         >
           <Text style={styles.addToCartText}>🛒</Text>
         </TouchableOpacity>
@@ -63,8 +64,8 @@ const CatalogScreen = ({ navigation }: any) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerTextContainer}>
-          <Text style={styles.headerTitle}>Katalog Hijab</Text>
-          <Text style={styles.headerSubtitle}>Koleksi hijab terlengkap untuk gaya Anda</Text>
+          <Text style={styles.headerTitle}>Katalog Buket</Text>
+          <Text style={styles.headerSubtitle}>Koleksi buket terlengkap untuk momen spesial Anda</Text>
         </View>
         <TouchableOpacity 
           style={styles.cartIcon}
@@ -78,8 +79,8 @@ const CatalogScreen = ({ navigation }: any) => {
       </View>
 
       <FlatList
-        data={HijabCategories}
-        renderItem={renderHijabItem}
+        data={BouquetCategories}
+        renderItem={renderBouquetItem}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         showsVerticalScrollIndicator={false}
@@ -93,10 +94,10 @@ const CatalogScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: Colors.background,
   },
   header: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: Colors.primary,
     paddingTop: 60,
     paddingBottom: 20,
     paddingHorizontal: 20,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     right: 5,
-    backgroundColor: '#FF1744',
+    backgroundColor: Colors.error,
     borderRadius: 10,
     width: 20,
     height: 20,
@@ -158,11 +159,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.accent,
   },
   imageContainer: {
     position: 'relative',
     height: 180,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: Colors.lightGray,
     borderRadius: 12,
     overflow: 'hidden',
   },
@@ -175,7 +178,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: `${Colors.primary}E6`,
     borderRadius: 20,
     width: 35,
     height: 35,
@@ -184,6 +187,7 @@ const styles = StyleSheet.create({
   },
   addToCartText: {
     fontSize: 16,
+    color: 'white',
   },
   categoryInfo: {
     padding: 12,
@@ -191,12 +195,12 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#333',
+    color: Colors.text,
     marginBottom: 4,
   },
   categoryDescription: {
     fontSize: 11,
-    color: '#666',
+    color: Colors.textSecondary,
     marginBottom: 8,
     lineHeight: 14,
   },
@@ -208,7 +212,7 @@ const styles = StyleSheet.create({
   categoryPrice: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: Colors.success,
   },
   categoryEmoji: {
     fontSize: 18,

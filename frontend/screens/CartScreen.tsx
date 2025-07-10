@@ -1,22 +1,22 @@
+import { BouquetImages } from '@/assets';
 import React, { useState } from 'react';
 import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { HijabImages } from '../assets';
 
 const CartScreen = ({ navigation }: any) => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: 'Hijab Segi Empat Premium',
-      price: 89000,
+      name: 'Buket Graduation Premium',
+      price: 150000,
       quantity: 2,
-      image: HijabImages.hijab.segiEmpat,
+      image: BouquetImages.graduation.graduation1,
     },
     {
       id: 2,
-      name: 'Hijab Bergo Instant',
-      price: 65000,
+      name: 'Buket Wedding Romantic',
+      price: 250000,
       quantity: 1,
-      image: HijabImages.hijab.bergo,
+      image: BouquetImages.wedding.wedding1,
     },
   ]);
 
@@ -48,19 +48,19 @@ const CartScreen = ({ navigation }: any) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backButton}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Keranjang Belanja</Text>
+        <Text style={styles.headerTitle}>Keranjang Buket</Text>
         <View style={styles.placeholder} />
       </View>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {cartItems.length === 0 ? (
           <View style={styles.emptyCart}>
-            <Text style={styles.emptyText}>Keranjang belanja kosong</Text>
+            <Text style={styles.emptyText}>Keranjang buket kosong</Text>
             <TouchableOpacity 
               style={styles.shopButton}
               onPress={() => navigation.navigate('Catalog')}
             >
-              <Text style={styles.shopButtonText}>Mulai Belanja</Text>
+              <Text style={styles.shopButtonText}>Mulai Belanja Buket</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -117,7 +117,7 @@ const CartScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#F1F8E9',
   },
   header: {
     flexDirection: 'row',
@@ -126,18 +126,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 50,
     paddingBottom: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#2E7D32',
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: '#4CAF50',
   },
   backButton: {
     fontSize: 24,
-    color: '#333',
+    color: '#fff',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
   },
   placeholder: {
     width: 24,
@@ -154,11 +154,11 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 18,
-    color: '#666',
+    color: '#2E7D32',
     marginBottom: 20,
   },
   shopButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#4CAF50',
     paddingHorizontal: 30,
     paddingVertical: 15,
     borderRadius: 25,
@@ -179,6 +179,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderLeftWidth: 4,
+    borderLeftColor: '#66BB6A',
   },
   itemImage: {
     width: 80,
@@ -192,12 +194,12 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 5,
   },
   itemPrice: {
     fontSize: 14,
-    color: '#FF6B6B',
+    color: '#388E3C',
     fontWeight: 'bold',
     marginBottom: 10,
   },
@@ -206,23 +208,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   quantityButton: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#E8F5E8',
     width: 30,
     height: 30,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#66BB6A',
   },
   quantityButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#2E7D32',
   },
   quantity: {
     marginHorizontal: 15,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
   },
   removeButton: {
     padding: 10,
@@ -233,8 +237,8 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: '#fff',
     padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopWidth: 3,
+    borderTopColor: '#4CAF50',
   },
   totalContainer: {
     flexDirection: 'row',
@@ -245,15 +249,15 @@ const styles = StyleSheet.create({
   totalLabel: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
   },
   totalPrice: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: '#2E7D32',
   },
   checkoutButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#4CAF50',
     paddingVertical: 15,
     borderRadius: 25,
     alignItems: 'center',

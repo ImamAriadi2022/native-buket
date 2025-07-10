@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { HijabImages } from '../assets';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -75,9 +74,9 @@ const LoginScreen = ({ navigation }: any) => {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.header}>
-          <Image source={HijabImages.icon} style={styles.logo} />
-          <Text style={styles.appTitle}>HijabEase</Text>
-          <Text style={styles.appSubtitle}>Temukan gaya hijab yang sempurna</Text>
+          <Text style={styles.logoEmoji}>🌸</Text>
+          <Text style={styles.appTitle}>BuketKu</Text>
+          <Text style={styles.appSubtitle}>Wujudkan momen spesial dengan buket pilihan terbaik</Text>
         </View>
 
         <View style={styles.formContainer}>
@@ -194,7 +193,7 @@ const LoginScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#F1F8E9',
   },
   scrollView: {
     flex: 1,
@@ -206,12 +205,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 60,
     paddingBottom: 30,
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#2E7D32',
   },
-  logo: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+  logoEmoji: {
+    fontSize: 80,
     marginBottom: 10,
   },
   appTitle: {
@@ -224,6 +221,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'white',
     opacity: 0.9,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   formContainer: {
     flex: 1,
@@ -234,7 +233,7 @@ const styles = StyleSheet.create({
   formTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
     textAlign: 'center',
     marginBottom: 30,
   },
@@ -244,20 +243,21 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#66BB6A',
     borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 12,
     fontSize: 16,
     backgroundColor: 'white',
+    color: '#1B5E20',
   },
   authButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#4CAF50',
     paddingVertical: 15,
     borderRadius: 12,
     alignItems: 'center',
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   authButtonDisabled: {
-    backgroundColor: '#cccccc',
+    backgroundColor: '#A5D6A7',
     opacity: 0.6,
   },
   authButtonText: {
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   switchButtonText: {
-    color: '#FF6B6B',
+    color: '#4CAF50',
     fontSize: 14,
     textDecorationLine: 'underline',
   },
@@ -290,15 +290,15 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#66BB6A',
   },
   dividerText: {
     marginHorizontal: 15,
-    color: '#666',
+    color: '#2E7D32',
     fontSize: 14,
   },
   guestButton: {
-    backgroundColor: '#6c757d',
+    backgroundColor: '#66BB6A',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   demoButton: {
-    backgroundColor: '#28a745',
+    backgroundColor: '#388E3C',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   quickLoginButton: {
-    backgroundColor: '#17a2b8',
+    backgroundColor: '#2E7D32',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
@@ -342,13 +342,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#66BB6A',
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
   },
   socialButtonText: {
-    color: '#333',
+    color: '#1B5E20',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -360,12 +360,12 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: '#666',
+    color: '#2E7D32',
     textAlign: 'center',
     lineHeight: 18,
   },
   linkText: {
-    color: '#FF6B6B',
+    color: '#4CAF50',
     textDecorationLine: 'underline',
   },
 });

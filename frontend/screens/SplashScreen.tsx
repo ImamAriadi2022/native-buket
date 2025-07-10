@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Animated, Image, StyleSheet, Text, View } from 'react-native';
-import { HijabImages } from '../assets';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 
 const SplashScreen = ({ navigation }: any) => {
   const fadeAnim = new Animated.Value(0);
@@ -41,12 +40,9 @@ const SplashScreen = ({ navigation }: any) => {
           }
         ]}
       >
-        <Image 
-          source={HijabImages.icon} 
-          style={styles.logo}
-        />
-        <Text style={styles.appName}>HijabEase</Text>
-        <Text style={styles.tagline}>Your Perfect Hijab Companion</Text>
+        <Text style={styles.logoEmoji}>🌸</Text>
+        <Text style={styles.appName}>BuketKu</Text>
+        <Text style={styles.tagline}>Wujudkan Momen Spesial Anda</Text>
         
         <View style={styles.loadingContainer}>
           <View style={styles.loadingBar}>
@@ -64,8 +60,8 @@ const SplashScreen = ({ navigation }: any) => {
       </Animated.View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2025 HijabEase</Text>
-        <Text style={styles.footerSubtext}>Temukan gaya hijab yang sempurna</Text>
+        <Text style={styles.footerText}>© 2025 BuketKu</Text>
+        <Text style={styles.footerSubtext}>Wujudkan momen spesial Anda</Text>
       </View>
     </View>
   );
@@ -74,7 +70,7 @@ const SplashScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#2E7D32',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -83,16 +79,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  logo: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+  logoEmoji: {
+    fontSize: 120,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 8,
   },
   appName: {
     fontSize: 36,

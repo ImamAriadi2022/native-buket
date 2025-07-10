@@ -24,9 +24,9 @@ const ProfileScreen = ({ navigation }: any) => {
 
   const menuItems = [
     { id: 1, icon: '👤', title: 'Edit Profil', subtitle: 'Ubah informasi pribadi' },
-    { id: 2, icon: '❤️', title: 'Favorit Saya', subtitle: 'Hijab yang disimpan', action: () => navigation.navigate('Favorite') },
-    { id: 3, icon: '�', title: 'Pesanan Saya', subtitle: 'Riwayat pembelian', action: () => navigation.navigate('Cart') },
-    { id: 4, icon: '�📚', title: 'Tutorial Tersimpan', subtitle: 'Lihat tutorial favorit' },
+    { id: 2, icon: '❤️', title: 'Favorit Saya', subtitle: 'Buket yang disimpan', action: () => navigation.navigate('Favorite') },
+    { id: 3, icon: '📦', title: 'Pesanan Saya', subtitle: 'Riwayat pembelian buket', action: () => navigation.navigate('Cart') },
+    { id: 4, icon: '🌸', title: 'Koleksi Buket', subtitle: 'Lihat koleksi buket favorit' },
     { id: 5, icon: '⚙️', title: 'Pengaturan', subtitle: 'Atur preferensi aplikasi' },
     { id: 6, icon: '❓', title: 'Bantuan', subtitle: 'FAQ dan dukungan' },
     { id: 7, icon: '📞', title: 'Hubungi Kami', subtitle: 'Kontak developer' },
@@ -37,10 +37,10 @@ const ProfileScreen = ({ navigation }: any) => {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.profileImageContainer}>
-          <Text style={styles.profileInitials}>HE</Text>
+          <Text style={styles.profileInitials}>BK</Text>
         </View>
-        <Text style={styles.userName}>Pengguna HijabEase</Text>
-        <Text style={styles.userEmail}>user@hijabease.com</Text>
+        <Text style={styles.userName}>Pengguna BuketKu</Text>
+        <Text style={styles.userEmail}>user@buketku.com</Text>
       </View>
 
       <View style={styles.menuSection}>
@@ -61,11 +61,11 @@ const ProfileScreen = ({ navigation }: any) => {
       </View>
 
       <View style={styles.aboutSection}>
-        <Text style={styles.aboutTitle}>Tentang HijabEase</Text>
+        <Text style={styles.aboutTitle}>Tentang BuketKu</Text>
         <Text style={styles.aboutText}>
-          HijabEase adalah aplikasi yang membantu Anda menemukan gaya hijab yang sesuai 
-          dengan bentuk wajah dan preferensi Anda. Temukan tutorial, tips, dan inspirasi 
-          hijab terbaik di sini.
+          BuketKu adalah aplikasi yang membantu Anda menemukan buket yang sempurna 
+          untuk berbagai momen spesial. Temukan koleksi buket terbaik untuk graduation, 
+          wedding, dan berbagai acara penting lainnya.
         </Text>
         <Text style={styles.versionText}>Versi 1.0.0</Text>
       </View>
@@ -80,10 +80,10 @@ const ProfileScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#F1F8E9',
   },
   header: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#2E7D32',
     paddingTop: 60,
     paddingBottom: 30,
     alignItems: 'center',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   profileInitials: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: '#2E7D32',
   },
   userName: {
     color: 'white',
@@ -123,13 +123,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderTopWidth: 3,
+    borderTopColor: '#66BB6A',
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: '#E8F5E8',
   },
   menuIcon: {
     fontSize: 20,
@@ -143,16 +145,16 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 2,
   },
   menuSubtitle: {
     fontSize: 12,
-    color: '#666',
+    color: '#2E7D32',
   },
   menuArrow: {
     fontSize: 20,
-    color: '#999',
+    color: '#66BB6A',
   },
   aboutSection: {
     backgroundColor: 'white',
@@ -164,22 +166,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    borderTopWidth: 3,
+    borderTopColor: '#66BB6A',
   },
   aboutTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#1B5E20',
     marginBottom: 10,
   },
   aboutText: {
     fontSize: 14,
-    color: '#666',
+    color: '#2E7D32',
     lineHeight: 20,
     marginBottom: 15,
   },
   versionText: {
     fontSize: 12,
-    color: '#999',
+    color: '#66BB6A',
     textAlign: 'center',
   },
   logoutButton: {
@@ -190,10 +194,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#FF6B6B',
+    borderColor: '#4CAF50',
   },
   logoutText: {
-    color: '#FF6B6B',
+    color: '#4CAF50',
     fontSize: 16,
     fontWeight: '600',
   },
