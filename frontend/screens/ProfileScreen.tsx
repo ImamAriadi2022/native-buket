@@ -24,13 +24,15 @@ const ProfileScreen = ({ navigation }: any) => {
 
   const menuItems = [
     { id: 1, icon: '👤', title: 'Edit Profil', subtitle: 'Ubah informasi pribadi' },
-    { id: 2, icon: '❤️', title: 'Favorit Saya', subtitle: 'Buket yang disimpan', action: () => navigation.navigate('Favorite') },
-    { id: 3, icon: '📦', title: 'Pesanan Saya', subtitle: 'Riwayat pembelian buket', action: () => navigation.navigate('Cart') },
-    { id: 4, icon: '🌸', title: 'Koleksi Buket', subtitle: 'Lihat koleksi buket favorit' },
-    { id: 5, icon: '⚙️', title: 'Pengaturan', subtitle: 'Atur preferensi aplikasi' },
-    { id: 6, icon: '❓', title: 'Bantuan', subtitle: 'FAQ dan dukungan' },
-    { id: 7, icon: '📞', title: 'Hubungi Kami', subtitle: 'Kontak developer' },
-    { id: 8, icon: '⭐', title: 'Beri Rating', subtitle: 'Rating aplikasi di store' },
+    { id: 2, icon: '❤️', title: 'Wishlist', subtitle: 'Buket yang disimpan', action: () => navigation.navigate('Wishlist') },
+    { id: 3, icon: '📦', title: 'Riwayat Pesanan', subtitle: 'Lihat pesanan Anda', action: () => navigation.navigate('OrderHistory') },
+    { id: 4, icon: '🔔', title: 'Notifikasi', subtitle: 'Pengaturan notifikasi', action: () => navigation.navigate('Notification') },
+    { id: 5, icon: '⭐', title: 'Ulasan Saya', subtitle: 'Kelola ulasan produk', action: () => navigation.navigate('Review') },
+    { id: 6, icon: '🏪', title: 'Toko Favorit', subtitle: 'Toko yang diikuti', action: () => navigation.navigate('Seller') },
+    { id: 7, icon: '⚙️', title: 'Pengaturan', subtitle: 'Atur preferensi aplikasi' },
+    { id: 8, icon: '❓', title: 'Bantuan', subtitle: 'FAQ dan dukungan' },
+    { id: 9, icon: '📞', title: 'Hubungi Kami', subtitle: 'Kontak developer' },
+    { id: 10, icon: '⭐', title: 'Beri Rating', subtitle: 'Rating aplikasi di store' },
   ];
 
   return (

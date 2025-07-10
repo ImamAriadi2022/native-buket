@@ -9,15 +9,19 @@ import {
     CartScreen,
     CatalogScreen,
     CheckoutScreen,
-    FavoriteScreen,
+    FlashSaleScreen,
     HomeScreen,
     LoginScreen,
+    NotificationScreen,
+    OrderHistoryScreen,
+    ProductDetailScreen,
     ProfileScreen,
-    SplashScreen
+    ReviewScreen,
+    SearchScreen,
+    SellerScreen,
+    SplashScreen,
+    WishlistScreen
 } from './screens';
-
-// Import Colors
-import { Colors } from '@/constants/Colors';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,12 +31,12 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.textSecondary,
+        tabBarActiveTintColor: '#2E7D32',
+        tabBarInactiveTintColor: '#666',
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopWidth: 1,
-          borderTopColor: Colors.lightGray,
+          borderTopColor: '#e0e0e0',
           paddingBottom: 5,
           paddingTop: 5,
           height: 60,
@@ -52,15 +56,15 @@ function MainTabs() {
         component={CatalogScreen}
         options={{
           tabBarLabel: 'Katalog',
-          tabBarIcon: () => '�',
+          tabBarIcon: () => '💐',
         }}
       />
       <Tab.Screen 
-        name="Favorite" 
-        component={FavoriteScreen}
+        name="Search" 
+        component={SearchScreen}
         options={{
-          tabBarLabel: 'Favorit',
-          tabBarIcon: () => '❤️',
+          tabBarLabel: 'Cari',
+          tabBarIcon: () => '🔍',
         }}
       />
       <Tab.Screen 
@@ -84,6 +88,14 @@ export default function App() {
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Cart" component={CartScreen} />
         <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+        <Stack.Screen name="FlashSale" component={FlashSaleScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
+        <Stack.Screen name="OrderHistory" component={OrderHistoryScreen} />
+        <Stack.Screen name="Wishlist" component={WishlistScreen} />
+        <Stack.Screen name="Review" component={ReviewScreen} />
+        <Stack.Screen name="Seller" component={SellerScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
